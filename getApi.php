@@ -5,16 +5,31 @@ $chname="";
 
 
 if(isset($_POST['submit'])){
-    if(empty($_POST[$chname])){
+    if(empty($_POST[$name])){
         $name_error="name is required";
     }else{
         $chname=strtolower($_POST[$chname]);
-        // get api with file_get_connects
-        $Api_Url = 'http://hp-api.herokuapp.com/api/characters/students';
+        $ch = curl_init();
 
-        $resourse=json_decode(file_get_contents($Api_Url));
-        // echo "<pre>";
-        // print_r($resourse);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        // Return Page contents.
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        //grab URL and pass it to the variable.
+        curl_setopt($ch, CURLOPT_URL, $Api_Url);
+
+        $resultphp = curl_exec($ch);
+        $resourse = json_decode($resultphp, true);
+
+        curl_close($ch);
+        // // get api with file_get_connects
+        // $Api_Url = 'http://hp-api.herokuapp.com/api/characters/students';
+
+        // $resourse=json_decode(file_get_contents($Api_Url));
+        // // echo "<pre>";
+        // // print_r($resourse);
         foreach ($resourse as $keys => $result){
             if(strtolower($result['name']) === $chname){
                 $name=$result['name'];

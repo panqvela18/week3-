@@ -1,7 +1,7 @@
 <?php require_once "./connect.php" ?>
 <?php require_once "./getApi.php" ?>
 <form class="mt-5 flex justify-center " method="POST">
-    <input type="text" name="charachter_name" value="<?= $chname ?>" placeholder="Search Info About Harry Potter Character" class="input input-bordered input-info w-full max-w-xs " />
+    <input type="text" name="name" value="<?= $chname ?>" placeholder="Search Info About Harry Potter Character" class="input input-bordered input-info w-full max-w-xs " />
     <button type="submit" class="btn btn-outline">Search</button>
 </form>
 <?php if(!empty($name_error)) : ?>
