@@ -2,7 +2,7 @@
 <?php
 $name_error="";
 $chname="";
-
+$Api_Url = 'http://hp-api.herokuapp.com/api/characters/students';
 
 if(isset($_POST['submit'])){
     if(empty($_POST[$name])){
